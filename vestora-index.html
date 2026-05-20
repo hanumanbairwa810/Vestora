@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="VESTORA – Trusted Homes. Direct Deals. Luxury global property platform with verified listings across 50+ countries."/>
+<title>VESTORA – Trusted Homes. Direct Deals.</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#D4AF37;--gold-light:#E8C84A;--gold-dim:rgba(212,175,55,0.15);--gold-border:rgba(212,175,55,0.25);--gold-glow:0 0 20px rgba(212,175,55,0.35);
+  --bg:#000;--bg2:#0a0a0a;--bg3:#111;--card:rgba(17,17,17,0.92);
+  --text:#fff;--muted:#A1A1AA;--muted2:#71717A;
+  --border:rgba(255,255,255,0.07);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Sora',sans-serif;overflow-x:hidden;line-height:1.6}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#000}::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:3px}
+
+/* ─── NAVBAR ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2.5rem;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,box-shadow .4s}
+nav.scrolled{background:rgba(0,0,0,0.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 1px 0 var(--gold-border),0 8px 32px rgba(0,0,0,0.6)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-text{display:flex;flex-direction:column;line-height:1.1}
+.logo-name{font-size:1.25rem;font-weight:700;letter-spacing:.12em;color:var(--text)}
+.logo-tag{font-size:.6rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;font-weight:400}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;letter-spacing:.04em;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--text)}.nav-links a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-icon-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--muted)}
+.nav-icon-btn:hover{border-color:var(--gold-border);color:var(--gold);background:var(--gold-dim)}
+.profile-btn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);border:1.5px solid var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;color:var(--gold);box-shadow:var(--gold-glow);position:relative;transition:box-shadow .2s}
+.profile-btn:hover{box-shadow:0 0 30px rgba(212,175,55,0.55)}
+.dropdown{position:absolute;top:calc(100% + 12px);right:0;width:240px;background:rgba(12,12,12,0.97);backdrop-filter:blur(20px);border:1px solid var(--gold-border);border-radius:14px;padding:1rem;opacity:0;pointer-events:none;transform:translateY(-8px);transition:all .25s;box-shadow:0 20px 60px rgba(0,0,0,0.8),var(--gold-glow)}
+.profile-wrap{position:relative}.profile-wrap:hover .dropdown,.profile-wrap:focus-within .dropdown{opacity:1;pointer-events:all;transform:translateY(0)}
+.dropdown-header{padding:.5rem .5rem 1rem;border-bottom:1px solid var(--gold-border);margin-bottom:.75rem}
+.dropdown-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#D4AF37,#8B6914);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;margin-bottom:.5rem}
+.dropdown-name{font-size:.85rem;font-weight:600}.dropdown-badge{display:inline-block;background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold);font-size:.6rem;padding:2px 8px;border-radius:20px;letter-spacing:.1em;margin-top:2px}
+.dropdown-item{display:flex;align-items:center;gap:10px;padding:.55rem .5rem;border-radius:8px;color:var(--muted);font-size:.8rem;text-decoration:none;transition:all .2s;cursor:pointer}
+.dropdown-item:hover{background:var(--gold-dim);color:var(--text)}.dropdown-item svg{width:15px;height:15px;opacity:.7}
+.dropdown-divider{height:1px;background:var(--gold-border);margin:.5rem 0}
+.dropdown-item.danger{color:#ef4444}.dropdown-item.danger:hover{background:rgba(239,68,68,0.1)}
+.lang-btn{font-size:.75rem;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:6px;padding:4px 10px;cursor:pointer;transition:all .2s}
+.lang-btn:hover{border-color:var(--gold-border);color:var(--gold)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--muted);transition:all .3s;border-radius:2px}
+
+/* ─── HERO ─── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1800&q=80') center/cover no-repeat;filter:brightness(.55) saturate(.85)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,0,0,.85) 45%,rgba(0,0,0,.35) 100%)}
+.hero-overlay2{position:absolute;inset:0;background:radial-gradient(ellipse at 0% 100%,rgba(212,175,55,.08) 0%,transparent 60%)}
+.hero-content{position:relative;z-index:2;max-width:1300px;margin:0 auto;padding:120px 2.5rem 80px;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:30px;padding:5px 14px;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+h1.hero-title{font-size:clamp(2.5rem,5vw,4.2rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:1.5rem}
+.hero-title .gold{color:var(--gold);text-shadow:0 0 40px rgba(212,175,55,.4)}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:420px;margin-bottom:2.5rem;font-weight:400;line-height:1.75}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-gold{background:linear-gradient(135deg,#D4AF37,#B8963E);color:#000;border:none;padding:.85rem 2rem;border-radius:10px;font-size:.85rem;font-weight:700;cursor:pointer;letter-spacing:.05em;transition:all .3s;box-shadow:0 4px 20px rgba(212,175,55,.35);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-gold:hover{box-shadow:0 6px 30px rgba(212,175,55,.55);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--gold-border);padding:.85rem 2rem;border-radius:10px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+.hero-visual{display:flex;justify-content:center;align-items:center}
+.hero-card-float{background:rgba(17,17,17,0.92);backdrop-filter:blur(20px);border:1px solid var(--gold-border);border-radius:18px;padding:1.5rem;width:280px;box-shadow:0 20px 60px rgba(0,0,0,.7),var(--gold-glow);animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-card-img{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:1rem;background:linear-gradient(135deg,#1a1a1a,#2a2a2a)}
+.hero-card-badge{display:inline-block;background:var(--gold);color:#000;font-size:.6rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.1em;margin-bottom:.75rem;text-transform:uppercase}
+.hero-card-title{font-size:.9rem;font-weight:700;margin-bottom:.25rem}
+.hero-card-loc{font-size:.75rem;color:var(--muted);margin-bottom:.75rem;display:flex;align-items:center;gap:4px}
+.hero-card-price{font-size:1.2rem;font-weight:800;color:var(--gold)}
+.hero-card-meta{font-size:.7rem;color:var(--muted);margin-top:4px}
+.hero-card-img-real{width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:1rem}
+
+/* ─── SEARCH BAR ─── */
+.search-section{position:relative;z-index:10;margin-top:-40px;padding:0 2.5rem 2rem}
+.search-wrap{max-width:1000px;margin:0 auto;background:rgba(10,10,10,0.96);backdrop-filter:blur(20px);border:1px solid var(--gold-border);border-radius:20px;padding:1.5rem 2rem;box-shadow:0 20px 60px rgba(0,0,0,.7),0 0 40px rgba(212,175,55,.08)}
+.search-tabs{display:flex;gap:0;margin-bottom:1.25rem;border:1px solid var(--border);border-radius:10px;overflow:hidden;width:fit-content}
+.search-tab{padding:6px 20px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;color:var(--muted);background:transparent;border:none;letter-spacing:.04em}
+.search-tab.active{background:var(--gold);color:#000}
+.search-fields{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:.75rem;align-items:end}
+.search-field label{display:block;font-size:.65rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;font-weight:600}
+.search-field input,.search-field select{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:.65rem 1rem;font-size:.82rem;color:var(--text);font-family:'Sora',sans-serif;transition:border-color .2s;outline:none}
+.search-field input:focus,.search-field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.1)}
+.search-field select option{background:#111;color:#fff}
+.search-btn{background:linear-gradient(135deg,#D4AF37,#B8963E);border:none;border-radius:10px;padding:.65rem 1.5rem;cursor:pointer;font-size:.85rem;font-weight:700;color:#000;white-space:nowrap;box-shadow:0 4px 20px rgba(212,175,55,.35);transition:all .3s;display:flex;align-items:center;gap:6px}
+.search-btn:hover{box-shadow:0 6px 30px rgba(212,175,55,.55);transform:translateY(-1px)}
+
+/* ─── SECTIONS ─── */
+section{padding:6rem 2.5rem}
+.section-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.75rem}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;line-height:1.2;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-sub{color:var(--muted);font-size:.95rem;max-width:500px;line-height:1.75}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
+.view-all{font-size:.78rem;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-border);padding-bottom:2px;transition:all .2s;display:flex;align-items:center;gap:4px}
+.view-all:hover{color:var(--gold-light)}
+.container{max-width:1300px;margin:0 auto}
+
+/* ─── STATS ─── */
+.stats-section{padding:2rem 2.5rem;background:transparent}
+.stats-row{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--gold-border);border-radius:18px;overflow:hidden;background:rgba(10,10,10,0.5);backdrop-filter:blur(10px)}
+.stat-item{padding:2rem;text-align:center;position:relative}
+.stat-item::after{content:'';position:absolute;right:0;top:25%;height:50%;width:1px;background:var(--gold-border)}
+.stat-item:last-child::after{display:none}
+.stat-icon{font-size:1.8rem;margin-bottom:.75rem;display:block}
+.stat-num{font-size:2.2rem;font-weight:800;color:var(--gold);letter-spacing:-.02em;line-height:1}
+.stat-label{font-size:.78rem;color:var(--muted);margin-top:.35rem;letter-spacing:.02em}
+
+/* ─── CATEGORIES ─── */
+.categories-section{background:var(--bg2)}
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.25rem}
+.cat-card{background:var(--card);border:1px solid var(--gold-border);border-radius:16px;padding:1.75rem 1rem;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.cat-card::before{content:'';position:absolute;inset:0;background:var(--gold-dim);opacity:0;transition:opacity .3s}
+.cat-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--gold-glow),0 12px 40px rgba(0,0,0,.5)}
+.cat-card:hover::before{opacity:1}
+.cat-icon{width:52px;height:52px;border-radius:14px;background:var(--gold-dim);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;transition:all .3s;font-size:1.5rem}
+.cat-card:hover .cat-icon{background:var(--gold);border-color:var(--gold)}
+.cat-card:hover .cat-icon svg{fill:#000}
+.cat-icon svg{width:24px;height:24px;fill:var(--gold);transition:fill .3s}
+.cat-name{font-size:.82rem;font-weight:700;letter-spacing:.03em;margin-bottom:.25rem}
+.cat-count{font-size:.7rem;color:var(--muted)}
+
+/* ─── PROPERTIES ─── */
+.properties-section{background:var(--bg)}
+.prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.prop-card{background:var(--card);border:1px solid var(--gold-border);border-radius:20px;overflow:hidden;transition:all .35s;cursor:pointer}
+.prop-card:hover{border-color:var(--gold);box-shadow:var(--gold-glow),0 20px 60px rgba(0,0,0,.6);transform:translateY(-6px)}
+.prop-img-wrap{position:relative;height:220px;overflow:hidden}
+.prop-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.prop-card:hover .prop-img-wrap img{transform:scale(1.06)}
+.prop-badge{position:absolute;top:14px;left:14px;background:var(--gold);color:#000;font-size:.6rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.1em;text-transform:uppercase}
+.prop-wishlist{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:#fff}
+.prop-wishlist:hover{border-color:var(--gold);color:var(--gold)}
+.prop-wishlist svg{width:15px;height:15px}
+.prop-body{padding:1.25rem}
+.prop-title{font-size:.95rem;font-weight:700;margin-bottom:.35rem}
+.prop-loc{font-size:.75rem;color:var(--muted);margin-bottom:.75rem;display:flex;align-items:center;gap:4px}
+.prop-price{font-size:1.3rem;font-weight:800;color:var(--gold);margin-bottom:.75rem}
+.prop-price span{font-size:.7rem;color:var(--muted);font-weight:400}
+.prop-amenities{display:flex;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap}
+.prop-amenity{font-size:.7rem;color:var(--muted);display:flex;align-items:center;gap:4px}
+.prop-amenity svg{width:13px;height:13px}
+.prop-actions{display:flex;gap:.5rem}
+.btn-sm{padding:.5rem 1rem;border-radius:8px;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid var(--gold-border);background:var(--gold-dim);color:var(--gold)}
+.btn-sm:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+.btn-sm.outline{background:transparent;color:var(--muted);border-color:var(--border)}
+.btn-sm.outline:hover{background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border)}
+.prop-rating{display:flex;align-items:center;gap:4px;font-size:.72rem;color:var(--gold);margin-bottom:.75rem}
+.prop-rating span{color:var(--muted)}
+
+/* ─── MAP ─── */
+.map-section{background:var(--bg2)}
+.map-container{position:relative;border:1px solid var(--gold-border);border-radius:24px;overflow:hidden;height:500px;box-shadow:0 20px 60px rgba(0,0,0,.6),var(--gold-glow)}
+.map-bg{width:100%;height:100%;background:#0a0a0a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M0 0h80v80H0z' fill='none'/%3E%3Cpath d='M0 20h80M0 40h80M0 60h80M20 0v80M40 0v80M60 0v80' stroke='rgba(212,175,55,0.06)' stroke-width='0.5'/%3E%3C/svg%3E") center/80px;display:flex;align-items:center;justify-content:center;position:relative}
+.map-overlay-text{text-align:center;z-index:2}
+.map-title{font-size:1.5rem;font-weight:800;margin-bottom:.5rem}
+.map-sub{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem}
+.map-pins{position:absolute;inset:0;pointer-events:none}
+.pin{position:absolute;display:flex;flex-direction:column;align-items:center}
+.pin-dot{width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 0 20px rgba(212,175,55,.7);animation:ping 2s infinite}
+@keyframes ping{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.7)}50%{box-shadow:0 0 0 12px rgba(212,175,55,0)}}
+.pin-label{background:rgba(10,10,10,0.92);border:1px solid var(--gold-border);border-radius:8px;padding:4px 10px;font-size:.65rem;white-space:nowrap;margin-bottom:5px;color:var(--text)}
+.map-card-float{position:absolute;bottom:1.5rem;left:1.5rem;background:rgba(12,12,12,0.95);backdrop-filter:blur(20px);border:1px solid var(--gold-border);border-radius:16px;padding:1rem;width:240px;box-shadow:0 12px 40px rgba(0,0,0,.7)}
+.map-card-float img{width:100%;height:90px;object-fit:cover;border-radius:10px;margin-bottom:.75rem}
+.map-card-mini-title{font-size:.82rem;font-weight:700;margin-bottom:.2rem}
+.map-card-mini-price{font-size:.9rem;font-weight:800;color:var(--gold)}
+.map-stats{position:absolute;top:1.5rem;right:1.5rem;display:flex;flex-direction:column;gap:.5rem}
+.map-stat-pill{background:rgba(10,10,10,0.9);border:1px solid var(--gold-border);border-radius:20px;padding:5px 14px;font-size:.7rem;display:flex;align-items:center;gap:6px;color:var(--text)}
+.map-stat-pill span{color:var(--gold);font-weight:700}
+
+/* ─── PRICING ─── */
+.pricing-section{background:var(--bg)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.price-card{background:var(--card);border:1px solid var(--gold-border);border-radius:24px;padding:2.5rem 2rem;text-align:center;transition:all .35s;position:relative;overflow:hidden}
+.price-card::before{content:'';position:absolute;inset:0;background:var(--gold-dim);opacity:0;transition:opacity .3s}
+.price-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:var(--gold-glow),0 20px 60px rgba(0,0,0,.6)}
+.price-card:hover::before{opacity:1}
+.price-card.featured{border-color:var(--gold);background:rgba(212,175,55,.06)}
+.price-card.featured::before{opacity:1}
+.price-card-badge{position:absolute;top:1rem;right:1rem;background:var(--gold);color:#000;font-size:.6rem;padding:3px 10px;border-radius:20px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.price-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.price-plan{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.5rem}
+.price-amount{font-size:3rem;font-weight:800;color:var(--text);line-height:1;margin-bottom:.25rem}
+.price-amount sup{font-size:1.2rem;color:var(--gold);vertical-align:super;margin-right:2px}
+.price-period{font-size:.75rem;color:var(--muted);margin-bottom:1.75rem}
+.price-features{list-style:none;text-align:left;margin-bottom:2rem}
+.price-features li{padding:.5rem 0;font-size:.8rem;color:var(--muted);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.price-features li::before{content:'✦';color:var(--gold);font-size:.6rem;flex-shrink:0}
+.price-features li:last-child{border:none}
+.price-btn{width:100%;padding:.85rem;border-radius:10px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .3s;letter-spacing:.05em}
+
+/* ─── WHY ─── */
+.why-section{background:var(--bg2)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.why-card{background:var(--card);border:1px solid var(--gold-border);border-radius:20px;padding:2rem;transition:all .35s}
+.why-card:hover{border-color:var(--gold);box-shadow:var(--gold-glow),0 12px 40px rgba(0,0,0,.5);transform:translateY(-4px)}
+.why-icon{width:56px;height:56px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:1.4rem;transition:all .3s}
+.why-card:hover .why-icon{background:var(--gold);box-shadow:0 0 20px rgba(212,175,55,.4)}
+.why-card:hover .why-icon svg{fill:#000}
+.why-icon svg{width:24px;height:24px;fill:var(--gold);transition:fill .3s}
+.why-title{font-size:.92rem;font-weight:700;margin-bottom:.5rem}
+.why-text{font-size:.78rem;color:var(--muted);line-height:1.75}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials-section{background:var(--bg)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testi-card{background:var(--card);border:1px solid var(--gold-border);border-radius:20px;padding:2rem;transition:all .3s}
+.testi-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--gold-glow)}
+.testi-quote{font-size:2rem;color:var(--gold);line-height:.5;margin-bottom:1rem;opacity:.6}
+.testi-text{font-size:.82rem;color:var(--muted);line-height:1.85;margin-bottom:1.5rem;font-style:italic}
+.testi-author{display:flex;align-items:center;gap.75rem}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#D4AF37,#8B6914);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:#000;margin-right:.75rem;flex-shrink:0}
+.testi-name{font-size:.82rem;font-weight:700}
+.testi-role{font-size:.7rem;color:var(--muted)}
+.testi-stars{color:var(--gold);font-size:.75rem;margin-top:2px;letter-spacing:2px}
+
+/* ─── CTA ─── */
+.cta-section{padding:5rem 2.5rem;background:var(--bg2)}
+.cta-inner{max-width:900px;margin:0 auto;text-align:center;border:1px solid var(--gold-border);border-radius:28px;padding:4rem 3rem;background:rgba(10,10,10,0.8);backdrop-filter:blur(20px);box-shadow:0 0 60px rgba(212,175,55,.08),0 30px 80px rgba(0,0,0,.7);position:relative;overflow:hidden}
+.cta-inner::before{content:'';position:absolute;inset:-1px;border-radius:28px;background:linear-gradient(135deg,rgba(212,175,55,.3),transparent,rgba(212,175,55,.1));pointer-events:none}
+.cta-title{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-.02em;margin-bottom:1rem;line-height:1.2}
+.cta-sub{font-size:.95rem;color:var(--muted);max-width:500px;margin:0 auto 2.5rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* ─── FOOTER ─── */
+footer{background:#000;border-top:1px solid var(--gold-border);padding:4rem 2.5rem 2rem}
+.footer-inner{max-width:1300px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo-name{font-size:1.5rem;font-weight:800;letter-spacing:.1em;color:var(--gold)}
+.footer-brand p{font-size:.78rem;color:var(--muted);line-height:1.75;margin:1rem 0 1.5rem;max-width:280px}
+.footer-social{display:flex;gap:.75rem}
+.social-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.75rem;transition:all .2s;cursor:pointer;text-decoration:none}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.footer-col h4{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1.25rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.65rem}
+.footer-col ul li a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-col ul li a:hover{color:var(--gold)}
+.newsletter-input-wrap{display:flex;gap:.5rem;margin-top:1rem}
+.newsletter-input{flex:1;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:.55rem .9rem;font-size:.75rem;color:var(--text);font-family:'Sora',sans-serif;outline:none}
+.newsletter-input:focus{border-color:var(--gold-border)}
+.newsletter-btn{background:var(--gold);color:#000;border:none;border-radius:8px;padding:.55rem 1rem;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.newsletter-btn:hover{background:var(--gold-light)}
+.footer-divider{height:1px;background:var(--gold-border);margin:2rem 0}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.72rem;color:var(--muted)}
+.footer-copy span{color:var(--gold)}
+.footer-links{display:flex;gap:1.5rem}
+.footer-links a{font-size:.72rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+
+/* ─── MODAL ─── */
+.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:rgba(12,12,12,0.98);border:1px solid var(--gold-border);border-radius:24px;padding:2.5rem;width:90%;max-width:420px;box-shadow:0 30px 80px rgba(0,0,0,.9),var(--gold-glow);position:relative;transform:scale(.92);transition:transform .3s}
+.modal-overlay.open .modal{transform:scale(1)}
+.modal-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);transition:all .2s}
+.modal-close:hover{border-color:var(--gold);color:var(--gold)}
+.modal-icon{width:64px;height:64px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.8rem}
+.modal h2{text-align:center;font-size:1.2rem;font-weight:800;margin-bottom:.5rem}
+.modal p{text-align:center;font-size:.8rem;color:var(--muted);margin-bottom:2rem}
+.modal-form{display:flex;flex-direction:column;gap:.75rem}
+.modal-input{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:.7rem 1rem;font-size:.82rem;color:var(--text);font-family:'Sora',sans-serif;outline:none;transition:border-color .2s}
+.modal-input:focus{border-color:var(--gold)}
+.modal-divider{text-align:center;font-size:.72rem;color:var(--muted);position:relative;margin:.5rem 0}
+.modal-divider::before,.modal-divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border)}
+.modal-divider::before{left:0}.modal-divider::after{right:0}
+.modal-footer-text{text-align:center;font-size:.72rem;color:var(--muted);margin-top:.75rem}
+.modal-footer-text a{color:var(--gold);text-decoration:none}
+
+/* ─── MOBILE ─── */
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(5,5,5,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-border);z-index:999;padding:1.5rem;transform:translateY(-100%);transition:transform .3s}
+.mobile-menu.open{transform:translateY(0)}
+.mobile-links{list-style:none;margin-bottom:1.5rem}
+.mobile-links li{border-bottom:1px solid var(--border)}
+.mobile-links a{display:block;padding:.85rem 0;color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.mobile-links a:hover{color:var(--gold)}
+
+@media (max-width:1100px){
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .prop-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2rem}
+  .search-fields{grid-template-columns:1fr 1fr;gap:.75rem}
+}
+@media (max-width:900px){
+  .hero-content{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+  .hero-sub{max-width:100%}
+  .hero-btns{justify-content:center}
+  .hero-visual{display:none}
+  .price-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr}
+  .stat-item::after{display:none;border-bottom:1px solid var(--gold-border)}
+}
+@media (max-width:700px){
+  nav .nav-links,.nav-right .lang-btn,.nav-right .nav-icon-btn{display:none}
+  .nav-right .profile-wrap{display:none}
+  .hamburger{display:flex}
+  section{padding:4rem 1.25rem}
+  .search-section{padding:0 1.25rem 1.5rem}
+  .search-fields{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .prop-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .cta-inner{padding:2.5rem 1.5rem}
+  nav{padding:0 1.25rem}
+  .hero-content{padding:100px 1.25rem 60px}
+}
+.custom-logo{
+   width:56px;
+   height:56px;
+   border-radius: 50%;
+   object-fit:contain;
+   filter: drop-shadow(0 0 10px rgba(212,175,55,0.5));
+   transition:0.3s ease;
+}
+
+.custom-logo:hover{
+   transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <img src="favicon.png" alt="Vestora Logo" class="custom-logo">
+    <div class="logo-text">
+      <span class="logo-name">VESTORA</span>
+      <span class="logo-tag">Trusted Homes. Direct Deals.</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Rent</a></li>
+    <li><a href="#">Buy</a></li>
+    <li><a href="#">Luxury</a></li>
+    <li><a href="#">Commercial</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-btn">EN ▾</button>
+    <button class="nav-icon-btn" onclick="openModal()" title="Wishlist">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <div class="profile-wrap">
+      <div class="profile-btn" tabindex="0">VK</div>
+      <div class="dropdown">
+        <div class="dropdown-header">
+          <div class="dropdown-avatar">VK</div>
+          <div class="dropdown-name">Vikram Kumar</div>
+          <div class="dropdown-badge">✦ LUXURY ACCESS</div>
+        </div>
+        <a class="dropdown-item" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>My Profile</a>
+        <a class="dropdown-item" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Membership Plan</a>
+        <a class="dropdown-item" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Saved Properties</a>
+        <a class="dropdown-item" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Wishlist</a>
+        <a class="dropdown-item" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>My Bookings</a>
+        <a class="dropdown-item" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>Notifications</a>
+        <a class="dropdown-item" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item danger" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout</a>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Rent</a></li>
+    <li><a href="#">Buy</a></li>
+    <li><a href="#">Luxury</a></li>
+    <li><a href="#">Commercial</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div style="display:flex;gap:.75rem">
+    <button class="btn-outline" style="flex:1;justify-content:center" onclick="openModal()">Sign In</button>
+    <button class="btn-gold" style="flex:1;justify-content:center" onclick="openModal()">Join Free</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay2"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">✦ Global Property Platform</div>
+      <h1 class="hero-title">Find Your Perfect<br><span class="gold">Space Anywhere</span><br>in the World.</h1>
+      <p class="hero-sub">Verified homes. Direct owner deals. No brokers. Discover luxury properties across 50+ countries with complete transparency.</p>
+      <div class="hero-btns">
+        <a href="#properties" class="btn-gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          Explore Properties
+        </a>
+        <a href="#pricing" class="btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          See Membership Plans
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-float">
+        <img class="hero-card-img-real" src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400&q=80" alt="Luxury Villa" loading="lazy"/>
+        <span class="hero-card-badge">✦ Featured</span>
+        <div class="hero-card-title">Azure Villa, Santorini</div>
+        <div class="hero-card-loc">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Santorini, Greece
+        </div>
+        <div class="hero-card-price">₹4.8 Cr <span style="font-size:.65rem;color:var(--muted)">/month</span></div>
+        <div class="hero-card-meta" style="color:var(--gold)">★★★★★ <span style="color:var(--muted)">(142 reviews)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH BAR -->
+<div class="search-section">
+  <div class="search-wrap">
+    <div class="search-tabs">
+      <button class="search-tab active">Rent</button>
+      <button class="search-tab" onclick="switchTab(this)">Buy</button>
+      <button class="search-tab" onclick="switchTab(this)">Luxury</button>
+      <button class="search-tab" onclick="switchTab(this)">Commercial</button>
+    </div>
+    <div class="search-fields">
+      <div class="search-field">
+        <label>Location</label>
+        <input type="text" placeholder="City, neighborhood, address..."/>
+      </div>
+      <div class="search-field">
+        <label>Property Type</label>
+        <select>
+          <option>Any Type</option>
+          <option>Luxury Villa</option>
+          <option>Apartment</option>
+          <option>PG / Room</option>
+          <option>Commercial</option>
+          <option>Vacation Home</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Budget</label>
+        <select>
+          <option>Any Budget</option>
+          <option>Under ₹25,000/mo</option>
+          <option>₹25K – ₹1L</option>
+          <option>₹1L – ₹5L</option>
+          <option>Above ₹5L</option>
+        </select>
+      </div>
+      <div class="search-field">
+        <label>Bedrooms</label>
+        <select>
+          <option>Any</option>
+          <option>1 BHK</option>
+          <option>2 BHK</option>
+          <option>3 BHK</option>
+          <option>4+ BHK</option>
+          <option>Villa</option>
+        </select>
+      </div>
+      <button class="search-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-row">
+    <div class="stat-item">
+      <span class="stat-icon">🏠</span>
+      <div class="stat-num">10K+</div>
+      <div class="stat-label">Verified Properties</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">🌍</span>
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Countries Worldwide</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">🔒</span>
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Secure Platform</div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories-section" id="categories">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Browse By Category</div>
+        <h2 class="section-title">Explore Every<br>Property Type</h2>
+      </div>
+      <a href="#" class="view-all">View All Categories →</a>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v.75h12v-.75A2.25 2.25 0 0 0 15.75 1.5h-2.25V0h-3v1.5ZM6 6v13.5a.75.75 0 0 0 .75.75H9a.75.75 0 0 0 .75-.75V15a2.25 2.25 0 0 1 4.5 0v4.5c0 .414.336.75.75.75h2.25a.75.75 0 0 0 .75-.75V6H6Z"/></svg></div>
+        <div class="cat-name">Luxury Villas</div>
+        <div class="cat-count">2,840 properties</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M4 22V6l8-4 8 4v16H4zm4-2h2v-2H8v2zm0-4h2v-2H8v2zm0-4h2V10H8v2zm4 8h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2V10h-2v2zm4 8h2v-2h-2v2zm0-4h2v-2h-2v2zm0-4h2V10h-2v2z"/></svg></div>
+        <div class="cat-name">Apartments</div>
+        <div class="cat-count">5,120 properties</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M1 22V11L12 2l11 9v11H1zm5-2h4v-7H6v7zm8 0h4v-7h-4v7z"/></svg></div>
+        <div class="cat-name">Budget Rentals</div>
+        <div class="cat-count">3,450 properties</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg></div>
+        <div class="cat-name">PG & Rooms</div>
+        <div class="cat-count">1,890 properties</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M4 22V8l8-6 8 6v14H4zm4-8h3v-3H8v3zm5 0h3v-3h-3v3zM8 18h3v-3H8v3zm5 0h3v-3h-3v3z"/></svg></div>
+        <div class="cat-name">Commercial</div>
+        <div class="cat-count">980 properties</div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M12 3C8.5 3 5.5 6 5.5 9.5c0 4.4 6.5 11.5 6.5 11.5s6.5-7.1 6.5-11.5C18.5 6 15.5 3 12 3zm0 9.5c-1.9 0-3.5-1.6-3.5-3.5S10.1 5.5 12 5.5s3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/></svg></div>
+        <div class="cat-name">Vacation Homes</div>
+        <div class="cat-count">2,100 properties</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROPERTIES -->
+<section class="properties-section" id="properties">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Handpicked for You</div>
+        <h2 class="section-title">Featured<br>Properties</h2>
+      </div>
+      <a href="#" class="view-all">View All Properties →</a>
+    </div>
+    <div class="prop-grid">
+
+      <div class="prop-card">
+        <div class="prop-img-wrap">
+          <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80" alt="Villa Santorini" loading="lazy"/>
+          <div class="prop-badge">✦ Luxury</div>
+          <button class="prop-wishlist" onclick="openModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="prop-body">
+          <div class="prop-rating">★★★★★ <span>(128 reviews)</span></div>
+          <div class="prop-title">Azure Cliff Villa, Santorini</div>
+          <div class="prop-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Santorini, Greece</div>
+          <div class="prop-price">₹4.8 Cr <span>/month</span></div>
+          <div class="prop-amenities">
+            <span class="prop-amenity"><svg viewBox="0 0 24 24" fill="var(--muted)" width="13" height="13"><path d="M7 13v-2h10v2H7zm-4 0V9h2v4H3zm0 4v-2h18v2H3zm18-4v-4h2v4h-2zm-2-6H5V5h14v2z"/></svg>4 Beds</span>
+            <span class="prop-amenity"><svg viewBox="0 0 24 24" fill="var(--muted)" width="13" height="13"><path d="M22 9V7h-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2h2v-2h-2v-2h2v-2h-2V9h2zm-4 10H4V5h14v14z"/></svg>3 Baths</span>
+            <span class="prop-amenity"><svg viewBox="0 0 24 24" fill="var(--muted)" width="13" height="13"><path d="M2 2h20v20H2z" fill="none"/><path d="M6 6h12v12H6z"/></svg>450 sqm</span>
+            <span class="prop-amenity">🏊 Pool</span>
+          </div>
+          <div class="prop-actions">
+            <button class="btn-sm" onclick="openModal()">View Details</button>
+            <button class="btn-sm outline" onclick="openModal()">Contact Owner</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prop-card">
+        <div class="prop-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Modern Dubai" loading="lazy"/>
+          <div class="prop-badge" style="background:linear-gradient(135deg,#667eea,#764ba2);color:#fff">Premium</div>
+          <button class="prop-wishlist" onclick="openModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="prop-body">
+          <div class="prop-rating">★★★★★ <span>(96 reviews)</span></div>
+          <div class="prop-title">Sky Penthouse, Downtown Dubai</div>
+          <div class="prop-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Downtown Dubai, UAE</div>
+          <div class="prop-price">₹2.2 Cr <span>/month</span></div>
+          <div class="prop-amenities">
+            <span class="prop-amenity">🛏️ 3 Beds</span>
+            <span class="prop-amenity">🛁 2 Baths</span>
+            <span class="prop-amenity">📐 280 sqm</span>
+            <span class="prop-amenity">🅿️ Parking</span>
+          </div>
+          <div class="prop-actions">
+            <button class="btn-sm" onclick="openModal()">View Details</button>
+            <button class="btn-sm outline" onclick="openModal()">Contact Owner</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prop-card">
+        <div class="prop-img-wrap">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Beverly Hills" loading="lazy"/>
+          <div class="prop-badge">✦ Exclusive</div>
+          <button class="prop-wishlist" onclick="openModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="prop-body">
+          <div class="prop-rating">★★★★☆ <span>(74 reviews)</span></div>
+          <div class="prop-title">Hilltop Estate, Beverly Hills</div>
+          <div class="prop-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>Beverly Hills, California</div>
+          <div class="prop-price">₹6.5 Cr <span>/month</span></div>
+          <div class="prop-amenities">
+            <span class="prop-amenity">🛏️ 6 Beds</span>
+            <span class="prop-amenity">🛁 5 Baths</span>
+            <span class="prop-amenity">📐 820 sqm</span>
+            <span class="prop-amenity">🏊 Pool</span>
+          </div>
+          <div class="prop-actions">
+            <button class="btn-sm" onclick="openModal()">View Details</button>
+            <button class="btn-sm outline" onclick="openModal()">Contact Owner</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP SECTION -->
+<section class="map-section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-label">Explore Globally</div>
+        <h2 class="section-title">Find Properties<br>on the Map</h2>
+      </div>
+    </div>
+    <div class="map-container">
+      <div class="map-bg">
+        <div class="map-overlay-text">
+          <div style="font-size:3rem;margin-bottom:.5rem">🗺️</div>
+          <div class="map-title">Interactive Map</div>
+          <div class="map-sub">Explore 10,000+ verified properties worldwide</div>
+          <button class="btn-gold" onclick="openModal()">Open Full Map View</button>
+        </div>
+        <!-- PINS -->
+        <div class="map-pins">
+          <div class="pin" style="top:28%;left:52%">
+            <div class="pin-label">Dubai — 842 props</div>
+            <div class="pin-dot"></div>
+          </div>
+          <div class="pin" style="top:22%;left:47%">
+            <div class="pin-label">Greece — 320 props</div>
+            <div class="pin-dot" style="background:#E8C84A"></div>
+          </div>
+          <div class="pin" style="top:30%;left:22%">
+            <div class="pin-label">NYC — 1.2K props</div>
+            <div class="pin-dot"></div>
+          </div>
+          <div class="pin" style="top:24%;left:35%">
+            <div class="pin-label">London — 960 props</div>
+            <div class="pin-dot" style="background:#E8C84A"></div>
+          </div>
+          <div class="pin" style="top:55%;left:72%">
+            <div class="pin-label">Singapore — 480 props</div>
+            <div class="pin-dot"></div>
+          </div>
+        </div>
+        <!-- FLOATING CARD -->
+        <div class="map-card-float">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=300&q=80" alt="Property" loading="lazy"/>
+          <div class="map-card-mini-title">Burj Vista, Dubai</div>
+          <div style="font-size:.7rem;color:var(--muted);margin-bottom:.4rem">Downtown Dubai, UAE</div>
+          <div class="map-card-mini-price">₹1.8 Cr/mo</div>
+        </div>
+        <!-- STATS PILLS -->
+        <div class="map-stats">
+          <div class="map-stat-pill"><span>50+</span> Countries</div>
+          <div class="map-stat-pill"><span>10K+</span> Properties</div>
+          <div class="map-stat-pill"><span>98%</span> Verified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-head" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
+      <div class="section-label">Membership Plans</div>
+      <h2 class="section-title">Choose Your<br>Access Level</h2>
+      <p class="section-sub">Unlock premium property listings, direct owner contact, and exclusive features.</p>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <span class="price-icon">🌏</span>
+        <div class="price-plan">Local Explore Pass</div>
+        <div class="price-amount"><sup>₹</sup>29</div>
+        <div class="price-period">per month, billed monthly</div>
+        <ul class="price-features">
+          <li>Access to 500+ local listings</li>
+          <li>Basic search & filters</li>
+          <li>5 property saves per month</li>
+          <li>Email support</li>
+          <li>Verified property badges</li>
+        </ul>
+        <button class="price-btn btn-outline" onclick="openModal()">Get Started</button>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-card-badge">Most Popular</div>
+        <span class="price-icon">🌐</span>
+        <div class="price-plan">International Access</div>
+        <div class="price-amount"><sup>₹</sup>199</div>
+        <div class="price-period">per month, billed monthly</div>
+        <ul class="price-features">
+          <li>Access to 10,000+ global listings</li>
+          <li>Advanced AI-powered search</li>
+          <li>Unlimited property saves</li>
+          <li>Direct owner messaging</li>
+          <li>Priority support 24/7</li>
+          <li>Virtual property tours</li>
+        </ul>
+        <button class="price-btn btn-gold" onclick="openModal()" style="width:100%;padding:.85rem">Upgrade Now ✦</button>
+      </div>
+
+      <div class="price-card">
+        <span class="price-icon">👑</span>
+        <div class="price-plan">Luxury Access</div>
+        <div class="price-amount"><sup>₹</sup>299</div>
+        <div class="price-period">per month, billed monthly</div>
+        <ul class="price-features">
+          <li>All International Access features</li>
+          <li>Off-market luxury properties</li>
+          <li>Dedicated property consultant</li>
+          <li>Private viewing arrangements</li>
+          <li>Legal document assistance</li>
+          <li>Concierge moving service</li>
+        </ul>
+        <button class="price-btn btn-outline" onclick="openModal()">Go Luxury</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY VESTORA -->
+<section class="why-section">
+  <div class="container">
+    <div class="section-head" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
+      <div class="section-label">Why Us</div>
+      <h2 class="section-title">Why Choose<br>Vestora?</h2>
+      <p class="section-sub">We built the platform owners and renters actually deserve — transparent, secure, and broker-free.</p>
+    </div>
+    <div class="why-grid" style="margin-top:3rem">
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+        <div class="why-title">Verified Properties</div>
+        <div class="why-text">Every listing goes through our rigorous verification process. No fake listings, no misleading photos.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4.9l5 2.25V11c0 3.52-2.33 6.79-5 7.93C9.33 17.79 7 14.52 7 11V8.15l5-2.25z"/></svg></div>
+        <div class="why-title">No Brokers</div>
+        <div class="why-text">Connect directly with property owners. Save thousands in brokerage fees on every deal.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+        <div class="why-title">Global Listings</div>
+        <div class="why-text">Properties across 50+ countries. From Jaipur to Santorini, find your perfect space anywhere.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
+        <div class="why-title">Secure Platform</div>
+        <div class="why-text">Bank-grade encryption, verified identities, and secure payment escrow protect every transaction.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+        <div class="why-title">Luxury to Budget</div>
+        <div class="why-text">Whether you need a ₹5,000/month PG room or a ₹50 Cr beachfront villa, we've got you covered.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg></div>
+        <div class="why-title">Direct Communication</div>
+        <div class="why-text">Chat, call, or video tour with property owners directly. No middlemen, no delays, no nonsense.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-head" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
+      <div class="section-label">Client Stories</div>
+      <h2 class="section-title">What Our Members<br>Say About Us</h2>
+    </div>
+    <div class="testi-grid" style="margin-top:3rem">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-text">Found my dream villa in Bali within 48 hours. No broker, no hidden fees. The owner was incredibly responsive through Vestora's platform. Absolutely game-changing.</div>
+        <div class="testi-author" style="display:flex;align-items:center">
+          <div class="testi-avatar">AR</div>
+          <div>
+            <div class="testi-name">Ananya Rao</div>
+            <div class="testi-role">Tech Entrepreneur, Bangalore</div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-text">As an NRI, finding verified properties in India was a nightmare until Vestora. The global platform with Indian listings is exactly what the diaspora community needed.</div>
+        <div class="testi-author" style="display:flex;align-items:center">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">SK</div>
+          <div>
+            <div class="testi-name">Siddharth Kapoor</div>
+            <div class="testi-role">Investment Banker, Dubai</div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <div class="testi-text">Listed my property on Vestora and had genuine buyers contact me directly. Sold at a better price than any broker had quoted. The verification process gave buyers confidence.</div>
+        <div class="testi-author" style="display:flex;align-items:center">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7);color:#000">PM</div>
+          <div>
+            <div class="testi-name">Priya Mehta</div>
+            <div class="testi-role">Property Owner, Mumbai</div>
+            <div class="testi-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="section-label" style="text-align:center;margin-bottom:1rem">Start Today</div>
+    <h2 class="cta-title">Start Exploring Verified<br><span style="color:var(--gold)">Properties</span> Today</h2>
+    <p class="cta-sub">Join 500,000+ smart renters and buyers who skip brokers and deal directly.</p>
+    <div class="cta-btns">
+      <a href="#properties" class="btn-gold">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        Explore Properties
+      </a>
+      <button class="btn-outline" onclick="openModal()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Become an Owner
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:.5rem">
+          <div class="logo-emblem" style="width:32px;height:32px"><svg viewBox="0 0 24 24" fill="var(--gold)" width="16"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.4L20 8.6v8.8l-8 4-8-4V8.6l8-4.2z"/></svg></div>
+          <div class="logo-name">VESTORA</div>
+        </div>
+        <p>The global property platform where verified owners and genuine seekers connect directly — no brokers, no games, no hidden fees.</p>
+        <div class="footer-social">
+          <a class="social-btn" href="#" title="Twitter">𝕏</a>
+          <a class="social-btn" href="#" title="Instagram">📷</a>
+          <a class="social-btn" href="#" title="LinkedIn">in</a>
+          <a class="social-btn" href="#" title="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Investors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Safety Center</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Report Issue</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>For Owners</h4>
+        <ul>
+          <li><a href="#">List Property</a></li>
+          <li><a href="#">Owner Dashboard</a></li>
+          <li><a href="#">Pricing Guide</a></li>
+          <li><a href="#">Marketing Tips</a></li>
+          <li><a href="#">Resources</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p style="font-size:.75rem;color:var(--muted);margin-bottom:0">Get the best properties delivered to your inbox weekly.</p>
+        <div class="newsletter-input-wrap">
+          <input class="newsletter-input" type="email" placeholder="your@email.com"/>
+          <button class="newsletter-btn">→</button>
+        </div>
+        <p style="font-size:.65rem;color:var(--muted2);margin-top:.5rem">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 <span>Vestora</span>. All rights reserved. Built with ✦ for dreamers worldwide.</div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-icon">🏠</div>
+    <h2>Login to Explore<br>Premium Properties</h2>
+    <p>Access verified listings, contact owners directly, and save your favourites.</p>
+    <div class="modal-form">
+      <input class="modal-input" type="email" placeholder="Email address"/>
+      <input class="modal-input" type="password" placeholder="Password"/>
+      <button class="btn-gold" style="width:100%;justify-content:center;padding:.85rem">Sign In to Vestora</button>
+      <div class="modal-divider">or continue with</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+        <button class="btn-outline" style="justify-content:center;font-size:.75rem">🇬 Google</button>
+        <button class="btn-outline" style="justify-content:center;font-size:.75rem">📘 Facebook</button>
+      </div>
+    </div>
+    <div class="modal-footer-text">Don't have an account? <a href="#" onclick="closeModal()">Join free →</a></div>
+  </div>
+</div>
+
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+}, {passive: true});
+
+// Start with scrolled if already down
+if (window.scrollY > 60) navbar.classList.add('scrolled');
+else navbar.classList.add('scrolled'); // Always glass for visibility
+
+// Search tab switch
+function switchTab(el) {
+  document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Mobile menu
+let menuOpen = false;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open', menuOpen);
+}
+
+// Modal
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Smooth reveal on scroll (IntersectionObserver)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
+
+document.querySelectorAll('.cat-card, .prop-card, .price-card, .why-card, .testi-card, .stat-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
